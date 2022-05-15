@@ -1,0 +1,66 @@
+{
+  "name": "ecoWarriors-client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@solana/wallet-adapter-wallets": "^0.16.0",
+    "@vueuse/core": "^8.4.2",
+    "axios": "^0.27.2",
+    "bootstrap": "^4.6.1",
+    "core-js": "^3.8.3",
+    "jquery": "^3.6.0",
+    "jslint": "^0.12.1",
+    "moment": "^2.29.3",
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "pinia": "^2.0.14",
+    "pinia-plugin-persistedstate": "^1.5.1",
+    "popper.js": "^1.16.1",
+    "solana-wallets-vue": "^0.3.2",
+    "vee-validate": "^4.5.11",
+    "vue": "^3.2.13",
+    "vue-class-component": "^8.0.0-0",
+    "vue-router": "^4.0.15",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-typescript": "^5.0.4",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/compiler-sfc": "^3.0.0-beta.1",
+    "@vue/eslint-config-typescript": "^9.1.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "typescript": "~4.5.5"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended",
+      "@vue/typescript"
+    ],
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
