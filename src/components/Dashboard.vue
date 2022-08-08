@@ -7,12 +7,8 @@
         </div>
         <div class="card-body">
           <p>
-            <strong>Auth Token:</strong>
-            {{token.substring(0, 20)}} ... {{token.substr(token.length - 20)}}
-          </p>
-          <p>
-            <strong>Id:</strong>
-            {{user.id}}
+            <strong>Author Id:</strong>
+            {{user.authorID}}
           </p>
           <p>
             <strong>Email:</strong>
@@ -23,6 +19,7 @@
     </div>
   </div>
   <br/>
+  <!-- TODO:
   <div class="row">
     <div class="col-md-12">
       <div class="card card-container">
@@ -80,6 +77,7 @@
       </div>
     </div>
   </div>
+  -->
 </template>
 
 <script>

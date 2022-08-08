@@ -9,9 +9,9 @@
             <ErrorMessage name="firstName" class="error-feedback" />
           </div>
           <div class="form-group">
-            <label for="lastname">Last Name</label>
-            <Field name="lastname" type="text" class="form-control" v-model="currentUser.lastName" />
-            <ErrorMessage name="lastname" class="error-feedback" />
+            <label for="lastName">Last Name</label>
+            <Field name="lastName" type="text" class="form-control" v-model="currentUser.lastName" />
+            <ErrorMessage name="lastName" class="error-feedback" />
           </div>
           <div class="form-group">
             <label for="username">Username</label>
@@ -112,7 +112,7 @@
         this.submitted = true;
 
         try {
-          this.updateUser( this.currentUser.id, this.currentUser );
+          this.updateUser( this.currentUser.authorID, this.currentUser );
         }
         catch( error ) {
           this.loading = false;
@@ -129,7 +129,7 @@
         this.submitted = true;
 
         try {
-          this.deleteUser( this.currentUser.id );
+          this.deleteUser( this.currentUser.authorID );
         }
         catch( error ) {
           this.loading = false;

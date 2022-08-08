@@ -1,8 +1,8 @@
 export interface UserSearchFilter {
 	id: number;
 	username: string;
-	fistname: string;
-	lastname: string;
+	firstName: string;
+	lastName: string;
 	email: string;
 	sortBy: string;
   }

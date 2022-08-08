@@ -1,4 +1,5 @@
 import { UserPreference } from "@/models/user/user.preference";
+import { UserRole } from "@/models/user/user.role";
 import { Wallet } from "@/models/wallet/wallet";
 
 export interface UserWallet {
@@ -8,14 +9,24 @@ export interface UserWallet {
 }
 
 export interface UserProfile {
-	id: number;
-	username: string;
-	fistname: string;
-	lastname: string;
+	authorID: string;
+	biography: string;
+	createdDate: Date;
 	email: string;
-	lastlogin: Date;
-	createdOn: Date;
-	modifiedOn: Date;
-	preferences: UserPreference[];
-	wallets: UserWallet[];
+	firstName: string;
+	isActive: boolean;
+	isDeleted: boolean;
+	lastLogin: Date;
+	lastName: string;
+	modifiedDate: Date;
+	numberOfContent: number;
+	numberOfContentStore: number;
+	numberOfEntries: number;
+	numberOfPages: number;
+	permissionGroups: [];
+	permissions: [];
+	preferences: any;
+	role: UserRole;
+	username: string;
+	//wallets: UserWallet[];
 }

@@ -35,7 +35,7 @@
               <tr v-for="(user, index) in this.users" :key="index" @click="setActiveUser(user, index)" >
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ $filters.formatDate( user.lastlogin ) }}</td>
+                <td>{{ $filters.formatDate( user.lastLogin ) }}</td>
                 <td>{{ user.isActive ? "Active" : "Inactive" }}</td>
               </tr>
             </tbody>
@@ -48,7 +48,7 @@
     <div class="card card-container">
       <div class="card-header d-flex justify-content-between align-items-center">
         <h5 class="card-title">User Details</h5>
-        <router-link :to="'/user/' + currentUser.id" v-if="currentUser" class="badge badge-primary" style="font-size:1.2rem; font-weight:300;">Edit</router-link>
+        <router-link :to="'/user/' + currentUser.authorID" v-if="currentUser" class="badge badge-primary" style="font-size:1.2rem; font-weight:300;">Edit</router-link>
       </div>
       <div class="card-body">
         <div v-if="currentUser">
@@ -66,6 +66,15 @@
           </div>
           <div>
             <label><strong>Status:</strong></label> {{ currentUser.isActive ? "Active" : "Inactive" }}
+          </div>
+
+          <h5>Preferences:</h5>
+          <div>
+            <ul>
+              <li v-for="( value, preference ) in currentUser.preferences" :key="preference">
+                {{ preference }}: {{ value }}
+              </li>
+            </ul>
           </div>
         </div>
         <div v-else>

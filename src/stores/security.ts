@@ -9,7 +9,8 @@ import { Wallet } from '@/wallet';
 
 export type SecurityState = {
   user: UserProfile | null;
-  token: string | null;
+  access_token: string | null;
+  refresh_token: string | null;
   loading: boolean;
   error: string | null;
 };
@@ -18,7 +19,8 @@ export const useSecurityStore = defineStore( 'security', {
 
   state: (): SecurityState => ({
     user: null,
-    token: "",
+    access_token: "",
+    refresh_token: "",
     loading: false,
     error: ""
   }),
@@ -26,11 +28,11 @@ export const useSecurityStore = defineStore( 'security', {
 
   getters: {
     isLoggedIn: (state) => {
-      return ( state.user === null ) ? false : ( !!state.token );
+      return ( state.user === null ) ? false : ( !!state.access_token );
     },
     getAuthHeader( state ): AxiosRequestHeaders {
-      if( state.token !== null ){
-        return { 'x-auth-token': state.token };
+      if( state.access_token !== null ){
+        return { 'x-auth-token': state.access_token };
       }
       return {}
     }
@@ -40,39 +42,37 @@ export const useSecurityStore = defineStore( 'security', {
 
     async authenticateUser( username: string, password: string ) {
       this.user = null;
-      this.token = null;
+      this.access_token = null;
+      this.refresh_token = null;
       this.loading = true;
 
       try {
 
-        await http.post( `/api/login`, {
+        await http.post( `/v1/login`, {
             username: username,
             password: password
           })
           .then( response => {
             // capture the JWT token from the response
-            this.token = this.handleResponse( response ).data;
+            this.access_token = this.handleResponse( response ).data.tokens.access_token;
+            this.refresh_token = this.handleResponse( response ).data.tokens.refresh_token;
 
             // retrieve the user's profile
-            http.get( `/api/user`, {
+            http.get( `/v1/whoami`, {
               headers: this.getAuthHeader,
-              params: {
-                username: username
-              }
             })
             .then( response => {
-              // capture the user's profile
-              this.user = this.handleResponse( response ).data[0];
 
-              // capture the user's preferences
-              http.get( `/api/user/${this.user!.id}/preference`, {
-                headers: this.getAuthHeader
-              })
-              .then( response => {
-                this.user!.preferences = this.handleResponse( response ).data;
-              })
+              const responseData = this.handleResponse( response ).data;
+
+              // capture the user's profile
+              this.user = responseData;
+
+              // the user's preferences come through as a JSON string, need to parse that and make it usable
+              this.user!.preferences = JSON.parse( responseData.preferences );
   
               // capture the user's wallets
+              /*
               http.get( `/api/user/${this.user!.id}/wallet`, {
                 headers: this.getAuthHeader
               })
@@ -89,6 +89,7 @@ export const useSecurityStore = defineStore( 'security', {
                   })
                 });
               })
+              */
   
               this.loading = false
             })
@@ -104,7 +105,8 @@ export const useSecurityStore = defineStore( 'security', {
     logout() {
       // remove the user and token from the store
       this.user = null;
-      this.token = null;
+      this.access_token = null;
+      this.refresh_token = null;
     },
     
     handleResponse( response: AxiosResponse ) {

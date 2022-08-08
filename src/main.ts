@@ -8,7 +8,7 @@ const app = createApp(App)
 
 app.config.globalProperties.$filters = {
   formatDate( value: Date ) {
-    return moment( String(value) ).format('MM/DD/YYYY hh:mm')
+    return moment( String(value) ).utc().format('MM/DD/YYYY hh:mm')
   }
 }
 

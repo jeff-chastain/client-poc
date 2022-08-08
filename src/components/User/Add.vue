@@ -9,6 +9,16 @@
             <ErrorMessage name="username" class="error-feedback" />
           </div>
           <div class="form-group">
+            <label for="firstName">First Name</label>
+            <Field name="firstName" type="text" class="form-control" />
+            <ErrorMessage name="firstName" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <Field name="lastName" type="text" class="form-control" />
+            <ErrorMessage name="lastName" class="error-feedback" />
+          </div>
+          <div class="form-group">
             <label for="email">Email</label>
             <Field name="email" type="text" class="form-control" />
             <ErrorMessage name="email" class="error-feedback" />
@@ -17,6 +27,14 @@
             <label for="password">Password</label>
             <Field name="password" type="password" class="form-control" />
             <ErrorMessage name="password" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="role">Role</label>
+            <Field name="role" as="select" class="form-control">
+              <option value="297e76bd8121651201812165fa010091">Administrator</option>
+              <option value="297e76bd8121651201812165f9f90090">Editor</option>
+            </Field>
+            <ErrorMessage name="role" class="error-feedback" />
           </div>
 
           <div class="form-group">
